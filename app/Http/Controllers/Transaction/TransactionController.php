@@ -1,20 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Transaction;
 
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use DataTables;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 
 class TransactionController extends Controller
 {
+    protected $id;
+
+    public function __construct(){
+        $this->id = Auth::id() ?? 1;
+    }
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
         try {
-            $transaction = Transaction::where('user_id', $this->user()->id)
+            $transaction = Transaction::where('user_id', $this->id)
                 ->orderBy('created_at', 'desc')
                 ->get();    
         } catch (\Exception $e) {
@@ -38,7 +45,7 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        $user = $this->user()->id;
+        $user = $this->id;
 
         $request->validate([
             'amount' => 'required|numeric',
@@ -64,7 +71,7 @@ class TransactionController extends Controller
      */
     public function show(string $id)
     {
-        $user_id = $this->user()->id;
+        $user_id = $this->id;
         $trans_id = $id;
 
         try {
@@ -96,7 +103,7 @@ class TransactionController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $user_id = $this->user()->id;
+        $user_id = $this->id;
         $trans_id = $id;
 
         $request->validate([
@@ -128,7 +135,7 @@ class TransactionController extends Controller
      */
     public function destroy(string $id)
     {
-        $user_id = $this->user()->id;
+        $user_id = $this->id;
         $trans_id = $id;
 
         try {
