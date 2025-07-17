@@ -1,0 +1,14 @@
+Objective
+Develop a simple Laravel with MySQL where an admin can log in and manage transactions.
+
+
+Create transactions table with:
+id: Integer, Primary Key, Auto Increment
+user_id: Integer, Foreign Key
+amount: Decimal
+status: Enum ('pending', 'failed', 'success')
+
+
+CRUD Operations: Implement Create, Read, Update, Delete for transactions.
+
+Filtering & Pagination: Filter by status and paginate transaction listings
