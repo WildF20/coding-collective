@@ -38,6 +38,11 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
+    {
+        title: 'Transaction',
+        href: '/transaction',
+        icon: LayoutGrid,
+    },
 ];
 
 const rightNavItems: NavItem[] = [
